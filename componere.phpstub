@@ -1,0 +1,304 @@
+<?php
+
+namespace Componere\Abstract {
+
+    /**
+     * https://www.php.net/class.componere-abstract-definition
+     * https://github.com/krakjoe/componere/blob/v3.1.2/src/definition.stub.php
+     *
+     * @internal
+     */
+    abstract class Definition
+    {
+        /**
+         * @param string $interface
+         * @return static
+         */
+        public function addInterface($interface)
+        {}
+
+        /**
+         * @param string $name
+         * @param \Componere\Method $method
+         * @return static
+         */
+        public function addMethod($name, $method)
+        {
+        }
+
+        /**
+         * @param string $trait
+         * @return static
+         */
+        public function addTrait($trait)
+        {
+        }
+
+        /**
+         * @return \ReflectionClass
+         */
+        public function getReflector()
+        {
+        }
+    }
+}
+
+namespace Componere {
+
+    /**
+     * https://github.com/krakjoe/componere/blob/v3.1.2/componere.stub.php
+     *
+     * @param string $Type
+     * @param object $object
+     * @return object
+     */
+    function cast($Type, $object)
+    {}
+
+    /**
+     * https://github.com/krakjoe/componere/blob/v3.1.2/componere.stub.php
+     *
+     * @param string $Type
+     * @param object $object
+     * @return object
+     */
+    function cast_by_ref($Type, $object)
+    {}
+
+    /**
+     * https://github.com/krakjoe/componere/blob/v3.1.2/src/definition.stub.php
+     */
+    class Definition extends \Componere\Abstract\Definition
+    {
+        /**
+         * https://www.php.net/componere-definition.construct
+         *
+         * @param string $name
+         */
+        public function __construct($name, ...$arguments)
+        {
+        }
+
+        /**
+         * @param string $name
+         * @param \Componere\Value $value
+         * @return static
+         */
+        public function addConstant($name, $value)
+        {
+        }
+
+        /**
+         * @param string $name
+         * @param \Componere\Value $value
+         * @return static
+         */
+        public function addProperty($name, $value)
+        {
+        }
+
+        /**
+         * @param string $name
+         * @param \Componere\Value $value
+         * @return static
+         */
+        public function setConstant($name, $value)
+        {
+        }
+
+        /**
+         * @param string $name
+         * @return \Closure
+         */
+        public function getClosure($name)
+        {
+        }
+
+        /**
+         * @return \Closure[]
+         */
+        public function getClosures()
+        {
+        }
+
+        /**
+         * @return void
+         */
+        public function register()
+        {
+        }
+
+        /**
+         * @return bool
+         */
+        public function isRegistered()
+        {
+        }
+    }
+
+    /**
+     * https://github.com/krakjoe/componere/blob/v3.1.2/src/patch.stub.php
+     */
+    class Patch extends \Componere\Abstract\Definition
+    {
+
+        /**
+         * @param object $instance
+         */
+        public function __construct($instance, ...$arguments)
+        {
+        }
+
+        /**
+         * @param string $name
+         * @return \Closure
+         */
+        public function getClosure($name)
+        {
+        }
+
+        /**
+         * @return \Closure[]
+         */
+        public function getClosures()
+        {
+        }
+
+        /**
+         * @return void
+         */
+        public function apply()
+        {
+        }
+
+        /**
+         * @return void
+         */
+        public function revert()
+        {
+        }
+
+        /**
+         * @return bool
+         */
+        public function isApplied()
+        {
+        }
+
+        /**
+         * @param object $object
+         * @return void
+         */
+        public function derive($object)
+        {
+        }
+    }
+
+    /**
+     * https://github.com/krakjoe/componere/blob/v3.1.2/src/method.stub.php
+     */
+    class Method
+    {
+        /**
+         * @param \Closure $closure
+         */
+        public function __construct($closure)
+        {
+        }
+
+        /**
+         * @return Method
+         */
+        public function setProtected()
+        {
+        }
+
+        /**
+         * @return Method
+         */
+        public function setPrivate()
+        {
+        }
+
+        /**
+         * @return Method
+         */
+        public function setStatic()
+        {
+        }
+
+        /**
+         * @return Method
+         */
+        public function setFinal()
+        {
+        }
+
+        /**
+         * @return \ReflectionMethod
+         */
+        public function getReflector()
+        {
+        }
+    }
+
+    /**
+     * https://github.com/krakjoe/componere/blob/v3.1.2/src/value.stub.php
+     */
+    class Value
+    {
+
+        public function __construct($value = null)
+        {
+        }
+
+        /**
+         * @return Value
+         */
+        public function setProtected()
+        {
+        }
+
+        /**
+         * @return Value
+         */
+        public function setPrivate()
+        {
+        }
+
+        /**
+         * @return Value
+         */
+        public function setStatic()
+        {
+        }
+
+        /**
+         * @return bool
+         */
+        public function isProtected()
+        {
+        }
+
+        /**
+         * @return bool
+         */
+        public function isPrivate()
+        {
+        }
+
+        /**
+         * @return bool
+         */
+        public function isStatic()
+        {
+        }
+
+        /**
+         * @return bool
+         */
+        public function hasDefault()
+        {
+        }
+    }
+}
