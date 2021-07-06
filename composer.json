@@ -1,5 +1,9 @@
 {
+    "name": "struggle-for-php/componere-stubs",
+    "description": "stub for componere extension",
+    "keywords": ["stub", "componere", "static analysis", "static-analysis"],
     "require": {
         "php": "^7.1|^8.0"
-    }
+    },
+    "license": "MIT"
 }
