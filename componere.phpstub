@@ -7,12 +7,16 @@ namespace Componere\Abstract {
      * https://github.com/krakjoe/componere/blob/v3.1.2/src/definition.stub.php
      *
      * @internal
+     *
+     * @template T
      */
     abstract class Definition
     {
         /**
          * @param string $interface
          * @return static
+         *
+         * @psalm-param class-string $interface
          */
         public function addInterface($interface)
         {}
@@ -36,6 +40,8 @@ namespace Componere\Abstract {
 
         /**
          * @return \ReflectionClass
+         *
+         * @psalm-return \ReflectionClass<T>
          */
         public function getReflector()
         {
@@ -67,6 +73,9 @@ namespace Componere {
 
     /**
      * https://github.com/krakjoe/componere/blob/v3.1.2/src/definition.stub.php
+     *
+     * @template T of class-string
+     * @template-extends \Componere\Abstract\Definition<T>
      */
     class Definition extends \Componere\Abstract\Definition
     {
@@ -74,6 +83,8 @@ namespace Componere {
          * https://www.php.net/componere-definition.construct
          *
          * @param string $name
+         *
+         * @psalm-param T $name
          */
         public function __construct($name, ...$arguments)
         {
@@ -138,12 +149,17 @@ namespace Componere {
 
     /**
      * https://github.com/krakjoe/componere/blob/v3.1.2/src/patch.stub.php
+     *
+     * @template T of object
+     * @template-extends \Componere\Abstract\Definition<T>
      */
     class Patch extends \Componere\Abstract\Definition
     {
 
         /**
          * @param object $instance
+         *
+         * @psalm-param T
          */
         public function __construct($instance, ...$arguments)
         {

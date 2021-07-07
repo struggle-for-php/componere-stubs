@@ -5,5 +5,8 @@
     "require": {
         "php": "^7.1|^8.0"
     },
-    "license": "MIT"
+    "license": "MIT",
+    "require-dev": {
+        "vimeo/psalm": "^4.8"
+    }
 }
