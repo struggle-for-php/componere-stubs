@@ -8,42 +8,38 @@ namespace Componere\Abstract {
      *
      * @internal
      *
-     * @template T
+     * @template T of object
      */
     abstract class Definition
     {
         /**
-         * @param string $interface
-         * @return static
-         *
          * @psalm-param class-string $interface
+         * @psalm-suppress InvalidReturnType
          */
-        public function addInterface($interface)
-        {}
-
-        /**
-         * @param string $name
-         * @param \Componere\Method $method
-         * @return static
-         */
-        public function addMethod($name, $method)
+        public function addInterface(string $interface) : static
         {
         }
 
         /**
-         * @param string $trait
-         * @return static
+         * @psalm-suppress InvalidReturnType
          */
-        public function addTrait($trait)
+        public function addMethod(string $name, \Componere\Method $method) : static
         {
         }
 
         /**
-         * @return \ReflectionClass
-         *
+         * @psalm-param trait-string $trait
+         * @psalm-suppress InvalidReturnType
+         */
+        public function addTrait(string $trait) : static
+        {
+        }
+
+        /**
          * @psalm-return \ReflectionClass<T>
+         * @psalm-suppress InvalidReturnType
          */
-        public function getReflector()
+        public function getReflector() : \ReflectionClass
         {
         }
     }
@@ -54,27 +50,35 @@ namespace Componere {
     /**
      * https://github.com/krakjoe/componere/blob/v3.1.2/componere.stub.php
      *
-     * @param string $Type
-     * @param object $object
-     * @return object
+     * @template T of object
+     * @psalm-param class-string<T> $Type
+     * @psalm-return T
+     *
+     * @psalm-suppress UnusedParam
+     * @psalm-suppress InvalidReturnType
      */
-    function cast($Type, $object)
-    {}
+    function cast(string $Type, object $object) : object
+    {
+    }
 
     /**
      * https://github.com/krakjoe/componere/blob/v3.1.2/componere.stub.php
      *
-     * @param string $Type
-     * @param object $object
-     * @return object
+     * @template T of object
+     * @psalm-param class-string<T> $Type
+     * @psalm-return T
+     *
+     * @psalm-suppress UnusedParam
+     * @psalm-suppress InvalidReturnType
      */
-    function cast_by_ref($Type, $object)
-    {}
+    function cast_by_ref(string $Type, object $object) : object
+    {
+    }
 
     /**
      * https://github.com/krakjoe/componere/blob/v3.1.2/src/definition.stub.php
      *
-     * @template T of class-string
+     * @template T of object
      * @template-extends \Componere\Abstract\Definition<T>
      */
     class Definition extends \Componere\Abstract\Definition
@@ -82,67 +86,62 @@ namespace Componere {
         /**
          * https://www.php.net/componere-definition.construct
          *
-         * @param string $name
+         * @psalm-param class-string<T> $name
          *
-         * @psalm-param T $name
+         * @psalm-suppress MissingParamType
          */
-        public function __construct($name, ...$arguments)
+        public function __construct(string $name, ...$arguments)
         {
         }
 
         /**
-         * @param string $name
-         * @param \Componere\Value $value
-         * @return static
+         * @psalm-suppress InvalidReturnType
          */
-        public function addConstant($name, $value)
+        public function addConstant(string $name, \Componere\Value $value) : static
         {
         }
 
         /**
-         * @param string $name
-         * @param \Componere\Value $value
-         * @return static
+         * @psalm-suppress InvalidReturnType
          */
-        public function addProperty($name, $value)
+        public function addProperty(string $name, \Componere\Value $value) : static
         {
         }
 
         /**
-         * @param string $name
-         * @param \Componere\Value $value
-         * @return static
+         * @psalm-suppress InvalidReturnType
          */
-        public function setConstant($name, $value)
+        public function setConstant(string $name, \Componere\Value $value) : static
         {
         }
 
         /**
-         * @param string $name
-         * @return \Closure
+         * @psalm-suppress InvalidReturnType
          */
-        public function getClosure($name)
+        public function getClosure(string $name) : \Closure
         {
         }
 
         /**
          * @return \Closure[]
+         * @psalm-suppress InvalidReturnType
          */
-        public function getClosures()
+        public function getClosures() : array
         {
         }
 
         /**
          * @return void
          */
-        public function register()
+        public function register() : void
         {
         }
 
         /**
          * @return bool
+         * @psalm-suppress InvalidReturnType
          */
-        public function isRegistered()
+        public function isRegistered() : bool
         {
         }
     }
@@ -157,55 +156,46 @@ namespace Componere {
     {
 
         /**
-         * @param object $instance
+         * @psalm-param T $instance
          *
-         * @psalm-param T
+         * @psalm-suppress MissingParamType
          */
-        public function __construct($instance, ...$arguments)
+        public function __construct(object $instance, /** @psalm-suppress MissingParamType */...$arguments)
         {
         }
 
         /**
-         * @param string $name
-         * @return \Closure
+         * @psalm-suppress InvalidReturnType
          */
-        public function getClosure($name)
+        public function getClosure(string $name) : \Closure
         {
         }
 
         /**
          * @return \Closure[]
+         *
+         * @psalm-suppress InvalidReturnType
          */
-        public function getClosures()
+        public function getClosures() : array
+        {
+        }
+
+        public function apply() : void
+        {
+        }
+
+        public function revert() : void
         {
         }
 
         /**
-         * @return void
+         * @psalm-suppress InvalidReturnType
          */
-        public function apply()
+        public function isApplied() : bool
         {
         }
 
-        /**
-         * @return void
-         */
-        public function revert()
-        {
-        }
-
-        /**
-         * @return bool
-         */
-        public function isApplied()
-        {
-        }
-
-        /**
-         * @param object $object
-         * @return void
-         */
-        public function derive($object)
+        public function derive(object $object) : void
         {
         }
     }
@@ -215,45 +205,42 @@ namespace Componere {
      */
     class Method
     {
-        /**
-         * @param \Closure $closure
-         */
-        public function __construct($closure)
+        public function __construct(\Closure $closure)
         {
         }
 
         /**
-         * @return Method
+         * @psalm-suppress InvalidReturnType
          */
-        public function setProtected()
+        public function setProtected() : Method
         {
         }
 
         /**
-         * @return Method
+         * @psalm-suppress InvalidReturnType
          */
-        public function setPrivate()
+        public function setPrivate() : Method
         {
         }
 
         /**
-         * @return Method
+         * @psalm-suppress InvalidReturnType
          */
-        public function setStatic()
+        public function setStatic() : Method
         {
         }
 
         /**
-         * @return Method
+         * @psalm-suppress InvalidReturnType
          */
-        public function setFinal()
+        public function setFinal() : Method
         {
         }
 
         /**
-         * @return \ReflectionMethod
+         * @psalm-suppress InvalidReturnType
          */
-        public function getReflector()
+        public function getReflector() : \ReflectionMethod
         {
         }
     }
@@ -264,56 +251,59 @@ namespace Componere {
     class Value
     {
 
+        /**
+         * @psalm-param mixed $value
+         */
         public function __construct($value = null)
         {
         }
 
         /**
-         * @return Value
+         * @psalm-suppress InvalidReturnType
          */
-        public function setProtected()
+        public function setProtected() : Value
         {
         }
 
         /**
-         * @return Value
+         * @psalm-suppress InvalidReturnType
          */
-        public function setPrivate()
+        public function setPrivate() : Value
         {
         }
 
         /**
-         * @return Value
+         * @psalm-suppress InvalidReturnType
          */
-        public function setStatic()
+        public function setStatic() : Value
         {
         }
 
         /**
-         * @return bool
+         * @psalm-suppress InvalidReturnType
          */
-        public function isProtected()
+        public function isProtected() : bool
         {
         }
 
         /**
-         * @return bool
+         * @psalm-suppress InvalidReturnType
          */
-        public function isPrivate()
+        public function isPrivate() : bool
         {
         }
 
         /**
-         * @return bool
+         * @psalm-suppress InvalidReturnType
          */
-        public function isStatic()
+        public function isStatic() : bool
         {
         }
 
         /**
-         * @return bool
+         * @psalm-suppress InvalidReturnType
          */
-        public function hasDefault()
+        public function hasDefault() : bool
         {
         }
     }

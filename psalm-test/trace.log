@@ -1,0 +1,8 @@
+FILE: trace.php
+
++----------+------+-------+---------------------------------+
+| SEVERITY | LINE | ISSUE | DESCRIPTION                     |
++----------+------+-------+---------------------------------+
+| ERROR    | 9    | Trace | $reflection: ReflectionClass<A> |
+| ERROR    | 11   | Trace | $reflection: ReflectionClass<A> |
++----------+------+-------+---------------------------------+

@@ -3,10 +3,18 @@
     "description": "stub for componere extension",
     "keywords": ["stub", "componere", "static analysis", "static-analysis"],
     "require": {
-        "php": "^7.1|^8.0"
+        "php": "^7.2|^8.0"
     },
     "license": "MIT",
     "require-dev": {
         "vimeo/psalm": "^4.8"
+    },
+    "scripts": {
+        "psalm-trace" : [
+            "psalm --config=psalm-test/psalm.xml --output-format=compact --monochrome --no-progress"
+        ],
+        "psalm-test" : [
+            "./psalm-test/test.bash"
+        ]
     }
 }
